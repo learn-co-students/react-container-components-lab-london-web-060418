@@ -5,10 +5,11 @@ const filterByMovieTitle = (reviews, searchTerm) => {
 }
 
 const MovieReviews = ({ reviews, searchTerm }) => {
-  //var filtered = filterByMovieTitle(reviews, searchTerm)
+  var filtered = filterByMovieTitle(reviews, searchTerm)
+  if (filtered.length > 0) {
   return (
     <div className="review-list">
-      {reviews.map(review => (
+      {filtered.map(review => (
           <div key={review.headline} className="review">
             <header>
               <a className="review-link" href={review.link.url} >
@@ -25,6 +26,9 @@ const MovieReviews = ({ reviews, searchTerm }) => {
       )}
     </div>
   )
+  }else {
+    return "No reviews for this one yet!"
+  }
 }
 
 MovieReviews.defaultProps = {
@@ -32,58 +36,3 @@ MovieReviews.defaultProps = {
 };
 
 export default MovieReviews;
-
-// const filterByName = (characters, nameFilter) => {
-//   return characters.filter(c => c.name.toLowerCase().includes(nameFilter.toLowerCase()))
-// }
-
-// const CharacterList = ({ name, ministry, deathEater, characters, color }) => {
-//   var filtered = filterByName(characters, name)
-//   if (ministry) {
-//     filtered = filtered.filter(c => c.ministryOfMagic)
-//   }
-//   if (deathEater) {
-//     filtered = filtered.filter(c => c.deathEater)
-//   }
-//   const characterItems = filtered.map(c => <CharacterItem character={c} color={color} />)
-//   return (<div>{characterItems}</div>)
-// }
-
-
-
-
-// const BookList = ({ books }) => (
-//   <div className="book-list">
-//     { books.map(book => <Book title={book.title} img_url={book.image_url} />) }
-//   </div>
-// )
-
-//console.log(character)
-// const {
-//   character,
-//   color
-// } = props
-// { color: color } is the same as { color }
-
-//<h4 style={ { color } }>{character.name}</h4>
-
-// const Review = ({ headline, byline, link, summary_short }) => {
-//   return (
-//     <div key={headline} className="review">
-//       <header>
-//         <a className="review-link" href={link.url} >
-//           {headline}
-//         </a>
-//         <br/>
-//         <span className="author">{byline}</span>
-//       </header>
-//       <blockquote>{summary_short}</blockquote>
-//     </div>
-//   );
-// };
-
-//const MovieReviews = ({ reviews }) => {
-//   return (
-//     <div className="review-list">{reviews.map(Review)}</div>;
-//   )
-// }
